@@ -1,0 +1,92 @@
+
+
+body{
+	background-color: #2f3542;
+	margin: 0;
+	font-family:"Avenir";
+	font-weight: normal;
+}
+
+.square{
+	width: 30%;
+	margin:1.66%; ;
+	float:left;
+	background-color: #2f3542;
+	padding-bottom: 30%;
+	border-radius: 15%;
+	transition: background 0.5s;            /*To fade the colors out in the squares when selected*/
+
+	/*To enable all browsers see this transition, include these lines:; */
+	-webkit-transition:background 0.5s;
+	-moz-transition:background 0.5s;
+}
+
+.container{
+	max-width: 600px;
+	margin: 0.8% auto;
+}
+
+.textColor{
+	color: white;
+}
+
+#strip{
+	background-color: white;
+	text-align: center;
+	height: 30px;
+}
+
+#colorDisplay{
+	font-size: 150%;
+}
+
+h1{
+	text-align: center;
+	background-color: #52B3D9;
+	margin: 0;
+	text-transform: uppercase;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+button{
+	border: none;
+	text-transform: uppercase;
+	height: 100%;
+	font-weight: 700;
+	color: #52B3D9;
+	outline: none;    /*Removes the outlining border put by the browser on buttons*/
+	transition: all 0.3s;     /*Tells css how to transition between any form of changes*/
+
+	-webkit-transition:all 0.3s;
+	-moz-transition:all 0.3s;
+}
+
+.clickFeedback{
+	display: inline-block;
+	width: 20%;
+}
+
+button:hover{
+	color: white;
+	background-color: #52B3D9;
+}
+/**************JavaScript Styles********************/
+
+.correctFeedbackColor{
+	color: green;
+}
+
+.wrongFeedbackColor{
+	color:red;
+}
+
+.h1Correct{
+	background-color: 
+}
+
+.modeSelected{
+	color: white;
+	background-color: #52B3D9;
+}
+/***************************************************/
