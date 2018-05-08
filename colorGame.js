@@ -14,6 +14,10 @@ var easyMode = document.querySelector("#easyMode");
 
 var hardMode = document.querySelector(".hardMode");
 
+var viewScore = document.querySelector(".viewScore");
+
+var lifeLeft = document.querySelector(".lifeLeft");
+
 
 //-------------------------------------------------------
 
@@ -177,38 +181,70 @@ for(i=0; i < colors.length; i++ ){
 
 	//Add click listeners to squares
 
+	//-----------------------------------------------
+	//To set trial limits and keep a score count
+	//-----------------------------------------------
+	var scoreCount = 0;
+	var maxLife = 3;
+	var lifeLoss = maxLife
+
 	squareColor[i].addEventListener("click", function(){
 
 		var clickedColor = this.style.backgroundColor;
 
-		if(clickedColor === colorGoal){
+		if(maxLife <= 3){
 
-			changeColor(clickedColor);
+			if(clickedColor === colorGoal){
 
-			//Changing Text and Styles for the correct color picked
+					scoreCount++;
 
-			clickFeedback.textContent = "Correct!"
+					viewScore.textContent = scoreCount;
 
-			clickFeedback.classList.add("correctFeedbackColor");
+					changeColor(clickedColor);
+		
+					//Changing Text and Styles for the correct color picked
+		
+					clickFeedback.textContent = "Correct!"
+		
+					clickFeedback.classList.add("correctFeedbackColor");
+		
+					clickFeedback.classList.remove("wrongFeedbackColor");
+		
+					h1Select.style.backgroundColor = clickedColor;
+		
+					reset.textContent = "PLAY AGAIN?";
 
-			clickFeedback.classList.remove("wrongFeedbackColor");
+					score ++;
+				}
+		
+				else{
 
-			h1Select.style.backgroundColor = clickedColor;
+					//maxLife --;
 
-			reset.textContent = "PLAY AGAIN?";
-		}
+					lifeLeft.textContent = maxLife;
 
-		else{
+					//Removing the color on the wrongly picked box
+					this.style.backgroundColor = "#2f3542";
+		
+					clickFeedback.textContent = "Try Again";
+		
+					clickFeedback.classList.add("wrongFeedbackColor");
+		
+					clickFeedback.classList.remove("correctFeedbackColor");
+		
+				}
+				maxLife --;
+			}
 
-			this.style.backgroundColor = "#2f3542";
+			else{
 
-			clickFeedback.textContent = "Try Again";
+				//for(i=0; i < colors.length; i++ ){
 
-			clickFeedback.classList.add("wrongFeedbackColor");
+					//squareColor[i].style.backgroundColor = "#2f3542";
+					alert("Game Over!");
 
-			clickFeedback.classList.remove("correctFeedbackColor");
-
-		}
+				//}
+			}
 
 	})
 }
@@ -243,3 +279,10 @@ reset.addEventListener("click", function(){
 
 	clickFeedback.textContent = "";   //Remove the 'Correct' or 'Try Again'
 })
+
+//--------------------------------------------------------
+//--------To increase Scores when right matches are made
+//--------------------------------------------------------
+
+var score = 0;
+

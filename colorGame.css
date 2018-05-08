@@ -62,9 +62,9 @@ button{
 	-moz-transition:all 0.3s;
 }
 
-.clickFeedback{
+.clickFeedback, #scoreCount{
 	display: inline-block;
-	width: 20%;
+	width: 10%;
 }
 
 button:hover{
