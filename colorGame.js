@@ -25,6 +25,13 @@ var numSquares = 6;
 
 var colors = generateRandomColors(numSquares);
 
+//-----------------------------------------------
+//To set trial limits and keep a score count
+//-----------------------------------------------
+	var scoreCount = 0;
+	var maxLife = 3;
+	var lifeLoss = maxLife;
+
 //-------------------------------------------------------
 
 //Generate Random Colors in different modes
@@ -34,13 +41,6 @@ easyMode.addEventListener("click", function(){
 
 	easyMode.classList.add("modeSelected");
 	hardMode.classList.remove("modeSelected");
-
-	//-----------------------------------------------
-	//To set trial limits and keep a score count
-	//-----------------------------------------------
-	var scoreCount = 0;
-	var maxLife = 3;
-	var lifeLoss = maxLife;
 
 
 	//Generate random colors
@@ -77,13 +77,6 @@ easyMode.addEventListener("click", function(){
 })
 
 hardMode.addEventListener("click", function(){
-
-	//-----------------------------------------------
-	//To set trial limits and keep a score count
-	//-----------------------------------------------
-	var scoreCount = 0;
-	var maxLife = 3;
-	var lifeLoss = maxLife;
 
 	numSquares = 6;
 
@@ -186,13 +179,6 @@ function generateRandomColors(num){      //Where num is the number of elements t
 
 //----------------------------------------------------------------
 
-	//-----------------------------------------------
-	//To set trial limits and keep a score count
-	//-----------------------------------------------
-	var scoreCount = 0;
-	var maxLife = 3;
-	var lifeLoss = maxLife;
-
 //Looping through the squares
 
 	for(i=0; i < colors.length; i++ ){
@@ -209,90 +195,86 @@ function generateRandomColors(num){      //Where num is the number of elements t
 
 			var clickedColor = this.style.backgroundColor;
 
-			if(maxLife <= 3 && maxLife > 0){
+			if(clickedColor === colorGoal && maxLife > 0){
 
-				if(clickedColor === colorGoal){
+					scoreCount++;
 
-						scoreCount++;
+					viewScore.textContent = scoreCount;
 
-						viewScore.textContent = scoreCount;
+					//Display new colors for each right selection until maxLife gets to 0
+					colors = generateRandomColors(numSquares);
 
-						//Display new colors for each right selection until maxLife gets to 0
-						colors = generateRandomColors(numSquares);
+					//Pick a color goal
+					colorGoal = colors[colorPicker()];
 
-						//Pick a color goal
-						colorGoal = colors[colorPicker()];
+					//Change the text content of the header to include the color goal
+					colorDisplay.textContent =  colorGoal ;
 
-						//Change the text content of the header to include the color goal
-						colorDisplay.textContent =  colorGoal ;
+					for(i=0; i < squareColor.length; i++ ){
 
-						for(i=0; i < squareColor.length; i++ ){
+						//Add Colors to square
 
-							//Add Colors to square
+						squareColor[i].style.backgroundColor = colors[i];
 
-							squareColor[i].style.backgroundColor = colors[i];
+						squareColor[i].style.display = "block";
 
-							squareColor[i].style.display = "block";
-
-							clickFeedback.textContent = "";
-
-						}
-
-
-						//changeColor(clickedColor);
-			
-						//Changing Text and Styles for the correct color picked
-			
-						clickFeedback.textContent = "Correct!"
-			
-						clickFeedback.classList.add("correctFeedbackColor");
-			
-						clickFeedback.classList.remove("wrongFeedbackColor");
-			
-						h1Select.style.backgroundColor = clickedColor;
-			
-						//reset.textContent = "PLAY AGAIN?";
+						clickFeedback.textContent = "";
 
 					}
+
+
+					//changeColor(clickedColor);
 			
-					else{
-
-						maxLife --;
-
-						lifeLeft.textContent = maxLife;
-
-						//Display new colors for each wrong selection until maxLife gets to 0
-						colors = generateRandomColors(numSquares);
-
-						//Pick a color goal
-						colorGoal = colors[colorPicker()];
-
-						//Change the text content of the header to include the color goal
-						colorDisplay.textContent =  colorGoal ;
-
-						for(i=0; i < squareColor.length; i++ ){
-
-							//Add Colors to square
-
-							squareColor[i].style.backgroundColor = colors[i];
-
-							squareColor[i].style.display = "block";
-
-						}
-
-						//Removing the color on the wrongly picked box
-						//this.style.backgroundColor = "#2f3542";
+					//Changing Text and Styles for the correct color picked
 			
-						clickFeedback.textContent = "Try Again";
+					clickFeedback.textContent = "Correct!"
 			
-						clickFeedback.classList.add("wrongFeedbackColor");
+					clickFeedback.classList.add("correctFeedbackColor");
+		
+					clickFeedback.classList.remove("wrongFeedbackColor");
 			
-						clickFeedback.classList.remove("correctFeedbackColor");
+					h1Select.style.backgroundColor = clickedColor;
+		
+					//reset.textContent = "PLAY AGAIN?";
+
+				}
 			
+			else if(clickedColor !== colorGoal && maxLife > 0){
+
+					maxLife --;
+
+					lifeLeft.textContent = maxLife;
+
+					//Display new colors for each wrong selection until maxLife gets to 0
+					colors = generateRandomColors(numSquares);
+
+					//Pick a color goal
+					colorGoal = colors[colorPicker()];
+
+					//Change the text content of the header to include the color goal
+					colorDisplay.textContent =  colorGoal;
+
+					for(i=0; i < squareColor.length; i++ ){
+
+						//Add Colors to square
+						squareColor[i].style.backgroundColor = colors[i];
+
+						squareColor[i].style.display = "block";
+
 					}
+
+					//Removing the color on the wrongly picked box
+					//this.style.backgroundColor = "#2f3542";
+			
+					clickFeedback.textContent = "Try Again";
+			
+					clickFeedback.classList.add("wrongFeedbackColor");
+			
+					clickFeedback.classList.remove("correctFeedbackColor");
+
 				}
 
-				else if(maxLife === 0){
+				else{
 
 						//for(i=0; i < colors.length; i++ ){
 

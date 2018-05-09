@@ -62,14 +62,13 @@ button{
 	-moz-transition:all 0.3s;
 }
 
-.lifeLeft, .viewScore{
-	display: inline-block;
-	width: 20%;
-}
-
 button:hover{
 	color: white;
 	background-color: #52B3D9;
+}
+
+.scoreBar{
+	width: 15%;
 }
 /**************JavaScript Styles********************/
 
@@ -89,4 +88,6 @@ button:hover{
 	color: white;
 	background-color: #52B3D9;
 }
+
+
 /***************************************************/
