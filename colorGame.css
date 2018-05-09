@@ -33,7 +33,7 @@ body{
 #strip{
 	background-color: white;
 	text-align: center;
-	height: 30px;
+	height: 40px;
 }
 
 #colorDisplay{
@@ -62,9 +62,9 @@ button{
 	-moz-transition:all 0.3s;
 }
 
-.clickFeedback, #scoreCount{
+.lifeLeft, .viewScore{
 	display: inline-block;
-	width: 10%;
+	width: 20%;
 }
 
 button:hover{
